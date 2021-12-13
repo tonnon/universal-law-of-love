@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<head>
+  <meta charset="UTF-8">
+  <title>Universal Law of Love</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+<style>
+  css-doodle {
+    --color: @p(#3FADD4, #EB645B, #C5BEEB, #FB3569);
+    --rule: (
+      :doodle {
+        @grid: 60x1 / 30vmin;
+        --deg: @p(-270deg, 90deg);
+      }
+      :container {
+        perspective: 30vmin;
+      }
+      :after, :before {
+        content: '';
+        background: var(--color); 
+        @place-cell: @r(500%) @r(100%);
+        @size: @r(15px);
+        @shape: heart;
+      }
+    
+      @place-cell: center;
+      @size: 100%;
+    
+      box-shadow: @m2(0 0 25px var(--color));
+      background: @m100(
+        radial-gradient(var(--color) 100%, transparent 0) 
+        @r(-40%, 200%) @r(-20%, 100%) / 2px 2px
+        no-repeat
+      );
+    
+      will-change: transform, opacity;
+      animation: scale-up 15s linear infinite;
+      animation-delay: calc(-15s / @I * @i);
+
+      @keyframes scale-up {
+        0%, 95.01%, 100% {
+          transform: translateZ(0) rotate(0);
+          opacity: 0;
+        }
+        10% { 
+          opacity: 1; 
+        }
+        95% {
+          transform: 
+            translateZ(30vmin) rotateZ(@var(--deg));
+        }
+      }
+    )
+  }
+</style>
+<css-doodle use="var(--rule)"></css-doodle>
+  <script src='https://unpkg.com/css-doodle@0.15.3/css-doodle.min.js'></script>
+</body>
+</html>
